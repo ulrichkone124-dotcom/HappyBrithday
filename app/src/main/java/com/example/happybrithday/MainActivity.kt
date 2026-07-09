@@ -16,7 +16,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -35,17 +34,16 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ){
-                    Greeting(message = "Happy birthday Sam!", from = "From Emma")
+                    // CORRECTION : Appel de GreetingImage au lieu de Greeting
+                    GreetingImage(message = "Happy birthday Sam!", from = "From Emma")
                 }
-
             }
         }
     }
 }
 
-
 @Composable
-fun Greeting(message: String, from: String , modifier: Modifier = Modifier) {
+fun Greeting(message: String, from: String, modifier: Modifier = Modifier) {
     Column (
         verticalArrangement = Arrangement.Center,
         modifier = modifier.padding(8.dp)
@@ -54,9 +52,8 @@ fun Greeting(message: String, from: String , modifier: Modifier = Modifier) {
             text = message,
             fontSize = 100.sp,
             lineHeight = 116.sp,
-            textAlign = TextAlign.Center,
-
-            )
+            textAlign = TextAlign.Center
+        )
         Text(
             text = from,
             fontSize = 36.sp,
@@ -66,16 +63,17 @@ fun Greeting(message: String, from: String , modifier: Modifier = Modifier) {
         )
     }
 }
+
 @Composable
-fun GreetingImage(message: String,from: String, modifier: Modifier = Modifier) {
+fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier) {
     val image = painterResource(R.drawable.androidparty)
-    Box {
+    Box(modifier = modifier) {
         Image(
             painter = image,
             contentDescription = null,
             contentScale = ContentScale.Crop,
-            alpha = 0.5F
-
+            alpha = 0.5F,
+            modifier = Modifier.fillMaxSize() // CORRECTION : L'image remplit maintenant tout l'espace de la Box
         )
         Greeting(
             message = message,
@@ -91,6 +89,6 @@ fun GreetingImage(message: String,from: String, modifier: Modifier = Modifier) {
 @Composable
 fun BirthdayCardPreview() {
     HappyBrithdayTheme {
-        Greeting("Happy birthday Sam!", from = "from Emma")
+        GreetingImage(message = "Happy birthday Sam!", from = "from Emma")
     }
 }
