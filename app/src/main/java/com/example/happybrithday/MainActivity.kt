@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ){
-                    // CORRECTION : Appel de GreetingImage au lieu de Greeting
+
                     GreetingImage(message = stringResource(R.string.happy_birthday_text),
                         from = stringResource(R.string.signature_text
                     ))
