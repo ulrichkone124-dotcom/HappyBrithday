@@ -76,7 +76,7 @@ fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier) 
             contentDescription = null,
             contentScale = ContentScale.Crop,
             alpha = 0.5F,
-            modifier = Modifier.fillMaxSize() // CORRECTION : L'image remplit maintenant tout l'espace de la Box
+            modifier = Modifier.fillMaxSize()
         )
         Greeting(
             message = message,
